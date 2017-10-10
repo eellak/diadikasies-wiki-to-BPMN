@@ -20,8 +20,12 @@ The module functionalities are:
 
 -BPMN is saved as a .bpmn file in a Mediawiki repository (i.e. folder)
 
--BPMN information is "linked" back -depends on user permissions and tokens created- to original wiki-page as follows:
+-BPMN information is "linked" back -depends on user permissions and tokens created
+
+	- to original wiki-page as follows:
+	
 	-A link to the produced .bpmn file
+	
 	-An image/diagram (of state 0) of the produced BMPN
 
 -BPMN representation is depicted to users, through an appropriate on-line tool
