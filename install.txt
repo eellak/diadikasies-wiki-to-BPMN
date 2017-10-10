@@ -3,3 +3,5 @@ Two installation ways exist:
 1) Copy whole BPMN folder to your Media wiki server folder
 
 2) Make a Media wiki extension of BPMN (not yet implemented...)
+
+User runs page bpmn1XXX.php
