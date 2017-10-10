@@ -11,8 +11,5 @@
 	"AutoloadClasses": {
 		"CPSV2BPMN": "bpmn1.php"
 	},
-	"Hooks": {
-		"PageContentSaveComplete": "CPSVSpawn::onPageContentSaveComplete"
-	},
 "manifest_version": 1
 }
