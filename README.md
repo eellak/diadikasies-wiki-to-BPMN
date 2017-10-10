@@ -5,11 +5,13 @@
 An extension for MediaWiki responsible for the transformation of all the necessary CPSV2.0 class pages 
 to BPMN related information (e.g. wiki pages, diagrams etc.) in the diadikasies.gr platform for registering public sector services.
 
+
 The module functionalities are:
 
 -Parse wiki pages describing public services as processes from diadikasies.gr 
 
 -Parsing supports analysing pages also enhanced with CPSV semantics (with pageforms and Semantic Media wiki extension)
+
 -Analysis of both kind of pages (CPSV and non-CPSV based) in order to locate BPMN related information
 
 -Whether applicable, BPM notation is produced
