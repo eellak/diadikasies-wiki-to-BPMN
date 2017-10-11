@@ -43,6 +43,6 @@ The module functionalities are:
 
 -Module is supported as a Mediawiki extension
 
-Demo can be found at an IHU media wiki test site: http://imagnisa.labs.ihu.edu.gr/mw
+Demo can be found at an IHU media wiki test site: http://imagnisa.labs.ihu.edu.gr/mw 
 
 
