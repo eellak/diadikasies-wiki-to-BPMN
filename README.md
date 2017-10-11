@@ -5,7 +5,7 @@
 An extension for MediaWiki responsible for the transformation of all the necessary CPSV2.0 class pages 
 to BPMN related information (e.g. wiki pages, diagrams etc.) in the diadikasies.gr platform for registering public sector services.
 
-Youtube demo also here: 
+Youtube demo also here: https://youtu.be/eadgfzxPC0o 
 
 The module functionalities are:
 
