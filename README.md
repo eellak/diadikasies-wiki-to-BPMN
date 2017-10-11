@@ -44,4 +44,4 @@ The module functionalities are:
 
 Demo can be found at an IHU media wiki test site: http://imagnisa.labs.ihu.edu.gr/mw
 
-
+<img src="https://www.ihu.edu.gr/images/logo_ihu_en.png" alt="IHU" height="42" width="42">
