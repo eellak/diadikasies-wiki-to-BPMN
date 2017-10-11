@@ -36,7 +36,7 @@ The module functionalities are:
 
 -Manual execution as glass-box approach is supported
 
--Automatic execution of above steps is also supported
+-Automatic execution of above steps is also supported (black-box approach, although execution steps are revealed to user)
 
 -Mass execution of above steps is also supported
 
