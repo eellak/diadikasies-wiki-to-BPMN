@@ -2,6 +2,10 @@ Two installation ways exist:
 
 1) Copy whole BPMN folder to your Media wiki server folder
 
-2) Make a Media wiki extension of BPMN (not yet implemented...)
+2) In file bpmn1.php find javascript parameters a) thisServer, b) thisServerplusFolder and c) thisServerFolder and change according to your server installation. E.g. thisServer = "diadikasies.gr", thisServerplusFolder = "diadikasies.gr" and thisServerFolder = "" if no extra folder is used. 
+
+3) If you want functionality of adding extra information and BPMN diagram to original eiki page of process description
+add $wgRawHtml = true; to your LocalSettings.php file. More info in this can be found at https://www.mediawiki.org/wiki/Manual:$wgRawHtml
+
 
 User runs page bpmn1XXX.php
