@@ -1,11 +1,25 @@
-Two installation ways exist:
+For installation do the following:
 
-1) Copy whole BPMN folder to your Media wiki server folder
+1) Copy whole BPMN folder to your Media wiki server folder, so result could be diadiaksies.gr/mw/BPMN. If no folder in server installation exists then result could be diadikasies.gr/BPMN.
 
 2) In file bpmn1.php find javascript parameters a) thisServer, b) thisServerplusFolder and c) thisServerFolder and change according to your server installation. E.g. thisServer = "diadikasies.gr", thisServerplusFolder = "diadikasies.gr" and thisServerFolder = "" if no extra folder is used. 
 
 3) If you want functionality of adding extra information and BPMN diagram to original eiki page of process description
 add $wgRawHtml = true; to your LocalSettings.php file. More info in this can be found at https://www.mediawiki.org/wiki/Manual:$wgRawHtml
 
+User runs page bpmn1.php, so users should have access to this file and folder BPMN.
 
-User runs page bpmn1XXX.php
+EXTRAS
+
+1) Reposiroty: In BPMN folder, the folder diagrams contains all cteated BPMN diagrams created by the tool. It is considered as a repository. With an external file manage,,ent tool such as extPlorer one could handle access to repository.
+
+2) Automatic execution: File auto.php runs bpmn1.php multiple times for every wiki page included in $wps array. Example names can be found at file query_OK_withProxessSteps_small.txt
+
+3) A user could call bpmn1.php by adding to your MediaWiki Sidebar Vertical menu according to https://www.mediawiki.org/wiki/Manual:Interface/Sidebar
+So, code could be
+* Magnisalis Tools
+** http://imagnisa.labs.ihu.edu.gr/mw/BPMN/bpmn1.php|Create BPMN (no parameters passing)
+** http://imagnisa.labs.ihu.edu.gr/mw/BPMN/bpmn1.php?auto=1&wp={{PAGENAMEE}}|Create BPMN from current page (beta!)
+For an example see at example installation at http://imagnisa.labs.ihu.edu.gr/mw
+
+
