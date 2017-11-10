@@ -45,4 +45,4 @@ The module functionalities are:
 
 Demo can be found at an IHU media wiki test site: http://imagnisa.labs.ihu.edu.gr/mw 
 
-
+For installation and configuration instructions check install.txt
