@@ -1,0 +1,15 @@
+{
+  "name": "CPSV2BPMN",
+  "version": 1.0,
+  "author": "Ioannis Magnisalis",
+  "url": "https://github.com/eellak/diadikasies-wiki-to-BPMN",
+  "type": "other",
+  "licence-name": "GPL-3.0",
+  "requires": {
+    "MediaWiki": ">= 1.25"
+	},
+	"AutoloadClasses": {
+		"CPSV2BPMN": "bpmn1.php"
+	},
+"manifest_version": 1
+}
