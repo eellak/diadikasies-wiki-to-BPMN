@@ -128,21 +128,21 @@ div.blueTable {
 <script src="htmlparser.js"></script>
 <script src="html2json.js"></script>
 
-<script src="query.tabletojson.min.js"></script>
-<script src="query.tabletojson.js"></script>
 
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script src="jquery.tabletojson.min.js"></script>
 <script src="jquery.tabletojson.js"></script>
+
+<script src="bpmn-io-dist/xxx.js"></script>
 
 <script src="bpmn-io-dist/bpmn-viewer.js"></script>
 
 <script>
 //Basic config parameters
 var thisServer = "localhost";
-var thisServerplusFolder = "localhost/mw";
-var thisServerFolder = "/mw";
+var thisServerplusFolder = "localhost/";
+var thisServerFolder = "";
 // end of basic config parameters
 var n1=-1;
 var n2=-2; //used to check whether page is CPSV based

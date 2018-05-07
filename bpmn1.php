@@ -129,13 +129,10 @@ div.blueTable {
 <script src="html2json.js"></script>
 
 
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="jquery.tabletojson.min.js"></script>
-<script src="jquery.tabletojson.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script src="jquery.tabletojson.min.js"></script>
 <script src="jquery.tabletojson.js"></script>
-
 
 <script src="bpmn-io-dist/xxx.js"></script>
 
@@ -144,8 +141,8 @@ div.blueTable {
 <script>
 //Basic config parameters
 var thisServer = "localhost";
-var thisServerplusFolder = "localhost/";
-var thisServerFolder = "";
+var thisServerplusFolder = "localhost/mw";
+var thisServerFolder = "/mw";
 // end of basic config parameters
 var n1=-1;
 var n2=-2; //used to check whether page is CPSV based
@@ -531,8 +528,8 @@ var obj, dbParam, xmlhttp, myObj, myObj2, x, y, txt = "";
         };
 //SOS
 //alert(dataa);
-
-        xmlhttp.open("POST", "http://"+thisServerplusFolder+"/BPMN/saveBPMNfile.php", true);
+thisServerplusFolder2 = "el.dev-diadikasies.ellak.gr";
+        xmlhttp.open("POST", "https://"+thisServerplusFolder2+"/BPMN/saveBPMNfile.php", true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send(dataa);
 
@@ -555,10 +552,12 @@ function openBPMN(){
     var viewer_big = new BpmnViewer_big({ container: '#canvas_big' });
 
    path_bpmn = "http://"+thisServerplusFolder+"/BPMN/diagrams/"+document.getElementById("URLin").innerHTML+"_BPMN.bpmn";
-
+myhost2 = "http://wd.labs.ihu.edu.gr/";
 path_bpmn = myhost + "BPMN/diagrams/" +document.getElementById("URLin").innerHTML+"_BPMN.bpmn";
 
-//alert(path_bpmn);
+//path_bpmn = encodeURI(path_bpmn);
+
+alert(path_bpmn);
 
 var xhr = new XMLHttpRequest();
 
@@ -583,11 +582,11 @@ xhr.send(null);
 
 //i removed below for simplicity
 //(document.location.href).substring(0,(document.location.href).length-9)+"diagrams/"+document.getElementById('URLin').innerHTML+"_BPMN.bpmn"
-
-bpmnEmbed = "<html><script src='http://"+thisServerplusFolder+"/BPMN/bpmn-io-dist/bpmn-viewer.js'><\/script><div id='canvas'><\/div><script>"+"var BpmnViewer = window.BpmnJS; var viewer = new BpmnViewer({ container: '#canvas' });  var path_bpmn ='"+ path_bpmn +"';var xhr = new XMLHttpRequest();xhr.onreadystatechange = function() {    if (xhr.readyState === 4) {        viewer.importXML(xhr.response, function(err) {          if (!err) {            console.log('success!');            viewer.get('canvas').zoom('fit-viewport');          } else {            console.log('something went wrong:', err);          }        });    }};xhr.open('GET', path_bpmn, true);xhr.send(null);";
+thisServerplusFolder2 = "wd.labs.ihu.edu.gr";
+bpmnEmbed = "<html><script src='https://"+thisServerplusFolder+"/BPMN/bpmn-io-dist/bpmn-viewer.js'><\/script><div id='canvas'><\/div><script>"+"var BpmnViewer = window.BpmnJS; var viewer = new BpmnViewer({ container: '#canvas' });  var path_bpmn ='"+ path_bpmn +"';var xhr = new XMLHttpRequest();xhr.onreadystatechange = function() {    if (xhr.readyState === 4) {        viewer.importXML(xhr.response, function(err) {          if (!err) {            console.log('success!');            viewer.get('canvas').zoom('fit-viewport');          } else {            console.log('something went wrong:', err);          }        });    }};xhr.open('GET', path_bpmn, true);xhr.send(null);";
 bpmnEmbed = bpmnEmbed + "<\/script><\/html>";
 
-//alert(bpmnEmbed);
+alert(bpmnEmbed);
 
 var xhr2 = new XMLHttpRequest();
 
@@ -618,7 +617,7 @@ document.getElementById("img6").src="../BPMN/img/check.png";
 alert("Δεν έχετε εισάγει ή επιλέξει σελίδα Wiki");
 }
 path_bpmn_href = encodeURIComponent("<html><a href='" + path_bpmn + "'>BPMN στο repository<\/a><\/html>");
-
+//alert(path_bpmn_href);
 }
 
 function createCPSVarray(){
@@ -822,15 +821,23 @@ var json = JSON.stringify(data);
 }
 
 function countSteps(){
+//alert("OKK2");
+//alert(document.getElementById("URLin").innerHTML);
 createCPSVarray();
 var temp1 = "";
 //var count1 = (temp1.match(/is/g) || []).length;
 //console.log(count1);
 
-xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        myObj = JSON.parse(this.responseText);
+    $.ajax({
+        type: "GET",
+        url: "https://dev-diadikasies.ellak.gr/api.php?action=parse&format=json&page="+document.getElementById("URLin").innerHTML+"&origin=*&prop=text&disablelimitreport=1&disableeditsection=1&disabletoc=1&utf8=1&callback=?",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+
+        myObj = data;
         //for (x in myObj) {
             temp1 = JSON.stringify(myObj);
             var count1 = (temp1.match(/Βήμα Διαδικασίας/g) || []).length;
@@ -881,12 +888,12 @@ n2 = temp1.search("Βήματα διαδικασίας");
          document.getElementById("parsedWikipage").style.display = "none";
          document.getElementById("isCPSV").innerHTML  = ispageCPSVbased;
 autocontinue=1;
-    }
+		
 
-};
-xmlhttp.open("POST", thisServerFolder+"/api.php", true);
-xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send("action=parse&format=json&page="+document.getElementById("URLin").innerHTML+"&prop=text&disablelimitreport=1&disableeditsection=1&disabletoc=1&utf8=1");
+        },
+        error: function (errorMessage) {
+        }
+    });
 
 
 document.getElementById("myBar").style.width = "25%";
@@ -896,6 +903,7 @@ document.getElementById("myBar").innerHTML = "25%";
 
 function countStepsnoCPSV(strin){
 noCPSVpage = "";
+//alert("OKK3");
 //alert(noCPSVpage);
 var strinHere = strin;
 var i = strin.indexOf("Βήματα διαδικασίας");
@@ -1156,41 +1164,53 @@ xmlhttp.send("action=edit&format=json&title="+url+"&section=new&sectiontitle="+s
 }
 
 
-function parseStepTemplate (url){
+function parseStepTemplate (urlx){
+//alert("OKK");
+urlx=urlx.replace(/ /g,"_");
+//alert(urlx);
+
 //alert( 'Parsed result:');
 var strSearch = "Βήμα Διαδικασίας";
 var obj, dbParam, xmlhttp, myObj, myObj2, x, y, txt = "";
 //obj = { "parse":"templates" };
 dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        myObj = JSON.parse(this.responseText);
+
+
+    $.ajax({
+        type: "GET",
+        url: "https://dev-diadikasies.ellak.gr/api.php?action=parse&format=json&page="+urlx+"&origin=*&prop=templates&disablelimitreport=1&disableeditsection=1&disabletoc=1&contentformat=text%2Fx-wiki&contentmodel=wikitext&utf8=1&ascii=1&callback=?",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+//alert("->:",data);
+        myObj = data;
         for (x in myObj) {
             txt += JSON.stringify(myObj[x].templates) + "<br>";
              
         }
         document.getElementById("txtHint").innerHTML = txt;
-        url=url.replace(/ /g,"_");
-        document.getElementById("URLin").innerHTML = url;
+        urlx=urlx.replace(/ /g,"_");
+		//alert(urlx);
+        document.getElementById("URLin").innerHTML = urlx;
         
-        document.getElementById("inURL").value= url;
+        document.getElementById("inURL").value= urlx;
 
-        urlsaved = url;
-        document.getElementById("bpmnUrl").value = encodeURIComponent("http://"+thisServerplusFolder+"/BPMN/diagrams/"+url+"_BPMN.bpmn");
+        urlsaved = urlx;
+        document.getElementById("bpmnUrl").value = encodeURIComponent("http://"+thisServerplusFolder+"/BPMN/diagrams/"+urlx+"_BPMN.bpmn");
         //txt1 = txt;
         //document.getElementById("btn1").style.visibility="visible";
 document.getElementById("myBar").style.width = "10%";
 document.getElementById("myBar").innerHTML = "10%"
 
-    }
+			
 
-};
-xmlhttp.open("POST", thisServerFolder+"/api.php", true);
-xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send("action=parse&format=json&page="+url+"&prop=templates&disablelimitreport=1&disableeditsection=1&disabletoc=1&contentformat=text%2Fx-wiki&contentmodel=wikitext&utf8=1&ascii=1");
+        },
+        error: function (errorMessage) {
+        }
+    });
 
-//return true;
 
 }
 
@@ -1569,21 +1589,16 @@ var input = document.getElementById('ajax');
 var obj, dbParam, xmlhttp, jsonOptions, myObj, myObj2 , myObj3, myObj4, x, y, txt = "";
 
 
-xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        myObj = JSON.parse(this.responseText);
-//alert(JSON.stringify(myObj));
-       for (x in myObj){
-         
-         if (x=="query") {
-            myObj2  = JSON.stringify(myObj[x]);
-            //alert(myObj2+"-"+x);
-//for (i in myObj.cars) {
-//    x += myObj.cars[i];
-//}
-myObj3 = JSON.parse(myObj2);
-           // alert(myObj3);
+
+    $.ajax({
+        type: "GET",
+        url: "https://dev-diadikasies.ellak.gr/api.php?action=query&origin=*&format=json&list=allpages&utf8=1&aplimit=500000&callback=?",
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        dataType: "json",
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+        myObj3 = data.query;
 
             for (y in myObj3.allpages) {
             myObj4 = JSON.stringify(myObj3.allpages[y].title);
@@ -1601,29 +1616,18 @@ myObj3 = JSON.parse(myObj2);
 
           //alert(myObj4+"-"+y);
           }
-          }
+
 
       // Update the placeholder text.
       input.placeholder = "π.χ. Χορήγηση...";
-       }
+
+			
+        },
+        error: function (errorMessage) {
+        }
+    });
 
 
-
-
-      // Update the placeholder text.
-      //input.placeholder = "π.χ. Χορήγηση...";
-         //document.getElementById("code").innerHTML = edittoken;
-
-    } else {
-      // An error occured :(
-      input.placeholder = "Couldn't load datalist options :(";
-    }
-};
-// Update the placeholder text.
-input.placeholder = "Loading options...";
-xmlhttp.open("POST", thisServerFolder+"/api.php", true);
-xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send("action=query&format=json&list=allpages&utf8=1&aplimit=50000");
 
 
 </script>
